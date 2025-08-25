@@ -12,14 +12,14 @@ router = APIRouter(
 @router.post("/video-data")
 async def get_video_data(request: YouTubeRequest):
     """Endpoint to get video metadata"""
-    return YouTubeTools.get_video_data(request.url)
+    return YouTubeTools.get_video_data(request.url, request.proxy)
 
 @router.post("/video-captions")
 async def get_video_captions(request: YouTubeRequest):
     """Endpoint to get video captions"""
-    return YouTubeTools.get_video_captions(request.url, request.languages)
+    return YouTubeTools.get_video_captions(request.url, request.languages, request.proxy)
 
 @router.post("/video-timestamps")
 async def get_video_timestamps(request: YouTubeRequest):
     """Endpoint to get video timestamps"""
-    return YouTubeTools.get_video_timestamps(request.url, request.languages)
+    return YouTubeTools.get_video_timestamps(request.url, request.languages, request.proxy)

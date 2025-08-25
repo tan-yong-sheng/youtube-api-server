@@ -9,6 +9,7 @@ A FastAPI-based server providing API endpoints for extracting and processing You
 - Generate timestamped captions
 - RESTful API with Swagger/OpenAPI documentation
 - Docker support for easy deployment
+- Optional HTTP/HTTPS proxy support for all YouTube requests
 
 ## Requirements
 
@@ -68,6 +69,13 @@ Once the server is running, you can access:
 - API documentation: http://localhost:8000/docs
 - Alternative API documentation: http://localhost:8000/redoc
 
+### Proxy Support
+
+If YouTube is blocked on your network or you require additional privacy, supply the
+optional `proxy` field in request bodies. The value should be a full HTTP or HTTPS
+proxy URL (e.g., `http://user:password@127.0.0.1:8080`). Environment proxy variables
+are ignored; only the proxy provided in the request is used.
+
 ### API Endpoints
 
 #### 1. Get Video Metadata
@@ -79,9 +87,11 @@ POST /youtube/video-data
 Request body:
 ```json
 {
-  "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "proxy": "http://127.0.0.1:8080"
 }
 ```
+The `proxy` field is optional and lets the server perform requests through the specified HTTP/HTTPS proxy.
 
 Response:
 ```json
@@ -109,7 +119,8 @@ Request body:
 ```json
 {
   "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-  "languages": ["en"]
+  "languages": ["en"],
+  "proxy": "http://127.0.0.1:8080"
 }
 ```
 
@@ -128,7 +139,8 @@ Request body:
 ```json
 {
   "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-  "languages": ["en"]
+  "languages": ["en"],
+  "proxy": "http://127.0.0.1:8080"
 }
 ```
 
