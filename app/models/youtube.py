@@ -8,9 +8,11 @@ class YouTubeRequest(BaseModel):
     Attributes:
         url: YouTube video URL
         languages: Optional list of language codes for captions
+        proxy: Optional proxy URL used for outbound requests
     """
     url: str
     languages: Optional[List[str]] = None
+    proxy: Optional[str] = None
 
 class VideoData(BaseModel):
     """
